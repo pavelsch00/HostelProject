@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model HostelProject.ViewModels.AdminViewModels.ChangeRoleViewModel
+
+@section Menu {
+    <a asp-controller="Users" class="btn btn-sm btn-custom" asp-action="Index">Back</a>
+}
+
+<div class="container a-list-custom">
+    <div class="row">
+        <div class="col-4"></div>
+
+        <div class="col-4 text-center">
+            <div class="margin-bottom-custom">
+                <h2>
+                    <a class="h2-custom">
+                        Changing roles for a user @Model.UserEmail
+                    </a>
+                </h2>
+            </div>
+
+            <div class="margin-bottom-custom">
+                <form asp-action="Edit" method="post">
+                    <input class="item-left" type="hidden" name="userId" value="@Model.UserId" />
+                    <div>
+                        @foreach (IdentityRole role in Model.AllRoles)
+                        {
+                            <div class="margin-bottom-user-edit-custom">
+                                <input class="item-left marginleft-custom" type="checkbox" name="roles" value="@role.Name"
+                                       @(Model.UserRoles.Contains(role.Name) ? "checked=\"checked\"" : "") />@role.Name <br />
+                                </div>
+                                <hr align="center" width="100%" size="1" />
+                            }
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-custom item-left marginleft-custom">Save</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-4"></div>
+    </div>
+</div>

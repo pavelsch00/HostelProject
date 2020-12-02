@@ -1,0 +1,107 @@
+﻿@model HostelProject.ViewModels.ManagerViewModels.StudentViewModel
+@{
+    ViewBag.Title = "Edit Student";
+}
+
+@section Menu {
+    <a asp-controller="StudentMenu" class="btn btn-sm btn-custom" asp-action="Index">Back</a>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+
+        <div class="col-4 text-center">
+            <div class="margin-bottom-custom">
+                <h2>
+                    <a class="h2-custom">
+                        Student @Model.FullName change
+                    </a>
+                </h2>
+            </div>
+            <div class="margin-bottom-custom">
+                <form asp-action="Edit" asp-controller="StudentMenu" asp-route-id="@Model.Id">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="FullName" class="control-label a-list-custom item-left">Name</label>
+                        <input type="text" asp-for="FullName" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Gender" class="control-label item-left">Gender</label>
+                        <select type="text" asp-for="Gender" class="form-control">
+                            <option>Male</option>
+                            <option>Girl</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DateOfBirth" class="control-label item-left">DateOfBirth</label>
+                        <input type="date" asp-for="DateOfBirth" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SpecialtyId" class="control-label item-left">Specialty</label>
+                        <select type="number" asp-for="SpecialtyId" class="form-control">
+                            @if (@Model.Specialty != null)
+                            {
+                                @foreach (var item in Model.Specialty)
+                                {
+                                    <option value="@item.Id">@item.ToString()</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CourseNumber" class="control-label item-left">CourseNumber</label>
+                        <select type="text" asp-for="CourseNumber" class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RoomId" class="control-label item-left">Room</label>
+                        <select type="number" asp-for="RoomId" class="form-control">
+                            @if (@Model.Room != null)
+                            {
+                                @foreach (var item in Model.Room)
+                                {
+                                    <option value="@item.Id">@item.ToString()</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CheckInDate" class="control-label item-left">CheckInDate</label>
+                        <input type="date" asp-for="CheckInDate" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CheckOutDate" class="control-label item-left">CheckOutDate</label>
+                        <input type="date" asp-for="CheckOutDate" class="form-control"/>
+                    </div>
+                    <div class="margin-bottom-custom a-list-custom">
+
+                        <div class="form-group">
+                            <label asp-for="PositionId" class="control-label item-left">Position</label>
+                            <select type="number" asp-for="PositionId" class="form-control">
+                                @if (@Model.Position != null)
+                                {
+                                    @foreach (var item in Model.Position)
+                                    {
+                                        <option value="@item.Id">@item.ToString()</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-sm btn-custom item-left" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-4"></div>
+    </div>
+</div>

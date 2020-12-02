@@ -1,0 +1,43 @@
+﻿@model HostelProject.ViewModels.AdminViewModels.DataBaseViewModels.PositionViewModel
+@{
+    ViewBag.Title = "Edit Position";
+}
+
+@section Menu {
+    <a asp-controller="Position" class="btn btn-sm btn-custom" asp-action="Index">Back</a>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+
+        <div class="col-4 text-center">
+            <div class="margin-bottom-custom">
+                <h2>
+                    <a class="h2-custom">
+                        Position @Model.Name change
+                    </a>
+                </h2>
+            </div>
+            <div class="margin-bottom-custom">
+                <form asp-action="Edit" asp-controller="Position" asp-route-id="@Model.Id">
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <div class="form-group">
+                        <input type="hidden" asp-for="Id" class="form-control" />
+                        <label asp-for="Id" class="control-label a-list-custom item-left">Id</label>
+                        <a class="a-list-custom"><br>@Model.Id</a>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label a-list-custom item-left">Name</label>
+                        <input type="text" asp-for="Name" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-sm btn-custom" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-4"></div>
+    </div>
+</div>

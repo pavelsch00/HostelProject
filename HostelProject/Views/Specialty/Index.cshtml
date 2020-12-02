@@ -1,0 +1,53 @@
+﻿@model IEnumerable<HostelProject.ViewModels.AdminViewModels.DataBaseViewModels.SpecialtyViewModel>
+
+@section Menu {
+    <a asp-controller="DataBase" class="btn btn-sm btn-custom" asp-action="Index">Back</a>
+}
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-12">
+            <h2>
+                <a class="h2-custom">
+                    Specialty list
+                </a>
+            </h2>
+            <hr align="center" width="100%" size="3" />
+            <div class="row text-center">
+                <div class="col-2">
+                    <a class="a-list-custom">Id</a>
+                </div>
+                <div class="col-2">
+                    <a class="a-list-custom">Name</a>
+                </div>
+                <div class="col-2 a-list-custom">
+                    <a class="a-list-custom">FacultyId</a>
+                </div>
+                <div class="col-4 a-list-custom"></div>
+                @foreach (var item in Model)
+                {
+                    <hr align="center" width="100%" size="3" />
+                    <div class="col-2 a-list-custom">
+                        <a class="a-list-custom">@item.Id</a>
+                    </div>
+                    <div class="col-2 a-list-custom">
+                        <a class="a-list-custom">@item.Name</a>
+                    </div>
+                    <div class="col-2 a-list-custom">
+                        <a class="a-list-custom">@item.FacultyId</a>
+                    </div>
+                    <div class="col-4 a-list-custom">
+                        <form asp-action="Delete" asp-route-id="@item.Id" method="post">
+                            <a class="btn btn-sm btn-custom" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </div>
+                }
+                <hr align="center" width="100%" size="3" />
+            </div>
+        </div>
+    </div>
+    <form method="get" asp-controller="Specialty" asp-action="Create">
+        <button type="submit" class="btn btn-sm btn-custom">Create</button>
+    </form>
+</div>

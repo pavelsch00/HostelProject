@@ -1,0 +1,29 @@
+﻿@section Menu {
+    <div class="container">
+        <div class="row">
+            <div class="col-9 div-centr margin-bottom-user-edit-custom">
+                <a asp-controller="Guest" class="btn btn-sm btn-custom btn-block" asp-action="Index">Guest Menu</a>
+            </div>
+            <div class="col-9 div-centr margin-bottom-user-edit-custom">
+                <form method="get" asp-controller="Manager" asp-action="Index">
+                    <button type="submit" class="btn btn-sm btn-custom btn-block">Manager Menu</button>
+                </form>
+            </div>
+            <div class="col-9 div-centr margin-bottom-user-edit-custom">
+                <form method="get" asp-controller="Role" asp-action="Index">
+                    <button type="submit" class="btn btn-sm btn-custom btn-block">Edit roles</button>
+                </form>
+            </div>
+            <div class="col-9 div-centr margin-bottom-user-edit-custom">
+                <form method="get" asp-controller="Users" asp-action="Index">
+                    <button type="submit" class="btn btn-sm btn-custom btn-block">Edit users</button>
+                </form>
+            </div>
+            <div class="col-9 div-centr margin-bottom-user-edit-custom">
+                <form method="get" asp-controller="DataBase" asp-action="Index">
+                    <button type="submit" class="btn btn-sm btn-custom btn-block">Edit DataBase</button>
+                </form>
+            </div>
+        </div>
+    </div>
+}

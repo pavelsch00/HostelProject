@@ -1,0 +1,51 @@
+﻿@model HostelProject.ViewModels.AdminViewModels.DataBaseViewModels.RoomViewModel
+@{
+    ViewBag.Title = "Edit room";
+}
+
+@section Menu {
+    <a asp-controller="Room" class="btn btn-sm btn-custom" asp-action="Index">Back</a>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+
+        <div class="col-4 text-center">
+            <div class="margin-bottom-custom">
+                <h2>
+                    <a class="h2-custom">
+                        Room id @Model.Id change
+                    </a>
+                </h2>
+            </div>
+            <div class="margin-bottom-custom">
+                <form asp-action="Edit" asp-controller="Room" asp-route-id="@Model.Id">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <input type="hidden" asp-for="Id" class="form-control" />
+                        <label asp-for="Id" class="control-label item-left">Id</label>
+                        <a><br>@Model.Id</a>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FloorNumber" class="control-label a-list-custom item-left">FloorNumber</label>
+                        <input type="number" asp-for="FloorNumber" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BlockNumber" class="control-label a-list-custom item-left">BlockNumber</label>
+                        <input type="number" asp-for="BlockNumber" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RoomNumber" class="control-label a-list-custom item-left">RoomNumber</label>
+                        <input type="number" asp-for="RoomNumber" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-sm btn-custom item-left" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-4"></div>
+    </div>
+</div>

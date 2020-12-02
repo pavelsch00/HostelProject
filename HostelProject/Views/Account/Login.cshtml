@@ -1,0 +1,41 @@
+﻿@model HostelProject.ViewModels.LoginViewModel
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+        </div>
+        <div class="col-sm div-centr">
+            <div class="margin-bottom-custom">
+                <h2>
+                    <a class="h2-custom">
+                        Login to the application
+                    </a>
+                </h2>
+            </div>
+
+            <form method="post" asp-controller="Account" asp-action="Login"
+                  asp-route-returnUrl="@Model.ReturnUrl">
+                <div asp-validation-summary="ModelOnly"></div>
+
+                <div class="margin-bottom-custom">
+                    <label class="login-a-custom item-left" asp-for="Email"></label><br />
+                    <input class="input-group-text input-custom" asp-for="Email" />
+                    <span asp-validation-for="Email"></span>
+                </div>
+
+                <div class="margin-bottom-custom">
+                    <label class="login-a-custom item-left" asp-for="Password"></label><br />
+                    <input class="input-group-text input-custom" asp-for="Password" />
+                    <span asp-validation-for="Password"></span>
+                </div>
+
+                <div>
+                    <input type="submit" class="btn btn-sm btn-custom" value="Login" />
+                </div>
+            </form>
+
+        </div>
+        <div class="col-sm">
+        </div>
+    </div>
+    
+</div>

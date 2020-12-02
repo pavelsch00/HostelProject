@@ -1,0 +1,89 @@
+﻿<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+@section Menu {
+    <a asp-controller="Home" class="btn btn-sm btn-custom" asp-action="Index">Back</a>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2>
+                <a class="h2-custom">
+                    Select table for edit
+                </a>
+            </h2>
+        </div>
+        <div class="col-2"></div>
+
+        <div class="col-8">
+
+            <div class="row div-centr">
+                <div class=" col-12">
+                    <div class="row">
+                        <div class="col-4">
+                            <form method="get" asp-controller="Faculty" asp-action="Index">
+                                <button type="submit" class="btn btn-sm btn-custom">Faculty list</button>
+                            </form>
+                        </div>
+                        <div class="col-4">
+                            <form method="get" asp-controller="Position" asp-action="Index">
+                                <button type="submit" class="btn btn-sm btn-custom">Position list</button>
+                            </form>
+                        </div>
+                        <div class="col-4">
+                            <form method="get" asp-controller="Mentor" asp-action="Index">
+                                <button type="submit" class="btn btn-sm btn-custom">Mentor list</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-4">
+                            <form method="get" asp-controller="ReasonForEviction" asp-action="Index">
+                                <button type="submit" class="btn btn-sm btn-custom">Reason For Eviction list</button>
+                            </form>
+                        </div>
+                        <div class="col-4">
+                            <form method="get" asp-controller="Room" asp-action="Index">
+                                <button type="submit" class="btn btn-sm btn-custom">Room list</button>
+                            </form>
+                        </div>
+                        <div class="col-4">
+                            <form method="get" asp-controller="Specialty" asp-action="Index">
+                                <button type="submit" class="btn btn-sm btn-custom">Specialty list</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class=" col-12">
+                    <div class="row">
+                        <div class="col-4">
+                            <form method="get" asp-controller="ViolationsAndIncentive" asp-action="Index">
+                                <button type="submit" class="btn btn-sm btn-custom">Violations And Incentive list</button>
+                            </form>
+                        </div>
+                        <div class="col-4">
+                            <form method="get" asp-controller="ViolationsAndIncentivesStudent" asp-action="Index">
+                                <button type="submit" class="btn btn-sm btn-custom">Violations And Incentives Students list</button>
+                            </form>
+                        </div>
+                        <div class="col-4">
+                            <form method="get" asp-controller="Student" asp-action="Index">
+                                <button type="submit" class="btn btn-sm btn-custom">Student list</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-2"></div>
+    </div>
+</div>

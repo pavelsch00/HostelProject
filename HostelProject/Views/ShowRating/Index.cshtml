@@ -1,0 +1,60 @@
+﻿@model IEnumerable<HostelProject.ViewModels.GuestViewModels.RatingViewModel>
+
+@section Menu {
+    <a asp-controller="Guest" class="btn btn-sm btn-custom" asp-action="Index">Back</a>
+}
+
+<div class="container">
+    <div class="row a-list-custom">
+        <div class="col-12 text-center">
+            <h2>
+                <a class="h2-custom">
+                    Student rating
+                </a>
+            </h2>
+        </div>
+        <hr align="center" width="100%" size="3" />
+        <div class="col-1">
+            <a>№</a>
+        </div>
+        <div class="col-3">
+            <a>FullName</a>
+        </div>
+        <div class="col-2">
+            <a>Faculty</a>
+        </div>
+        <div class="col-2">
+            <a>Specialty</a>
+        </div>
+        <div class="col-2">
+            <a>Course</a>
+        </div>
+        <div class="col-2">
+            <a>Score</a>
+        </div>
+
+        @foreach (var item in Model)
+        {
+            <hr align="center" width="100%" size="3" />
+            <div class="col-1">
+                <a>@item.Count</a>
+            </div>
+            <div class="col-3">
+                <a>@item.FullName</a>
+            </div>
+            <div class="col-2">
+                <a>@item.Faculty</a>
+            </div>
+            <div class="col-2">
+                <a>@item.Specialty</a>
+            </div>
+            <div class="col-2">
+                <a>@item.CourseNumber</a>
+            </div>
+            <div class="col-2">
+                <a>@item.Score</a>
+            </div>
+        }
+        <hr align="center" width="100%" size="3" />
+    </div>
+</div>

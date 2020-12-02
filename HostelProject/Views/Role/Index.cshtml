@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+
+@section Menu {
+    <a asp-controller="Home" class="btn btn-sm btn-custom" asp-action="Index">Back</a>
+}
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col-12">
+            <h2>
+                <a class="h2-custom">
+                    Roles list
+                </a>
+            </h2>
+        </div>
+        <div class="col-4">
+        </div>
+
+        <div class="col-4">
+            @foreach (var role in Model)
+            {
+                <div class="row">
+                    <div class="col-6 a-list-custom">
+                        <a>@role.Name</a>
+                    </div>
+                    <div class="col-6 ">
+                        <form method="post" asp-action="Delete" asp-route-id="@role.Id">
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </div>
+                    <hr align="center" width="100%" size="1" />
+                </div>
+            }
+            <form method="get" asp-action="Create">
+                <button type="submit" class="btn btn-sm btn-custom">Create</button>
+            </form>
+        </div>
+
+        <div class="col-4">
+        </div>
+    </div>
+</div>
+

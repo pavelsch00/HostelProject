@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Guest";
+}
+
+<table>
+    <tr>
+        <td>
+            @section Menu {
+                <div class="container">
+                    <div class="row">
+                        <div class="col-9 div-centr margin-bottom-user-edit-custom">
+                            <form method="get" asp-controller="ShowRating" asp-action="Index">
+                                <button type="submit" class="btn btn-sm btn-custom btn-block">Show Rating</button>
+                            </form>
+                        </div>
+                        <div class="col-9 div-centr margin-bottom-user-edit-custom">
+                            <a asp-controller="Home" class="btn btn-sm btn-custom btn-block" asp-action="Index">Back</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </td>
+    </tr>
+</table>

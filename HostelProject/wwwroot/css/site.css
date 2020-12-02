@@ -1,0 +1,210 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+.menu {
+    width: 15%;
+    height: 100%;
+    min-height: 35em;
+    margin-top: 4%;
+    margin-left: 7%;
+    margin-right: 1%;
+    background: rgba(137, 130, 123, 0.6);
+    border: 3px solid #9B9795;
+    box-sizing: border-box;
+    text-align:center;
+}
+
+
+.input-custom {
+    width: 70%;
+}
+
+.main {
+    background: rgba(200, 198, 197, 0.95);
+    width: 70%;
+    height: 100%;
+    min-height: 35em;
+    margin-top: 4%;
+    margin-left: 1%;
+    margin-right: 3%;
+    border: 3px solid #9B9795;
+    box-sizing: border-box;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+    color: #96908E;
+}
+
+.a-master {
+    color: #96908E;
+    font-size: 22px;
+}
+
+.aCustom {
+    color: rgba(232, 229, 226, 1) !important;
+}
+
+.a-list-custom {
+    font-size: 17px;
+}
+
+.a-list-custom-header {
+    font-size: 5px;
+}
+
+.hr-custom {
+    color: rgba(70, 59, 49, 1) !important;
+    height: 5px;
+}
+
+.h2-custom {
+    color: rgba(70, 59, 49, 1) !important;
+}
+
+.margin-bottom-user-edit-custom {
+    margin-bottom: 5%;
+}
+
+.margin-bottom-user-custom {
+    margin-bottom: 2%;
+}
+
+.marginleft-custom {
+    margin-left: 5%;
+}
+
+.col-12 {
+    margin-top: 5%;
+}
+
+.col-9 {
+    margin-top: 5%;
+}
+
+.login-a-custom {
+    color: rgba(70, 59, 49, 1) !important;
+    font-size: 18px;
+}
+
+.input-custom{
+    width: 100%;
+}
+
+.item-left {
+    float:left !important;
+}
+
+.item-right {
+    float: right !important;
+}
+
+.div-centr {
+    text-align: center;
+    align-items:center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+nav .navbar-nav li a {
+    color: rgba(232, 229, 226, 1) !important;
+}
+
+nav {
+    position: absolute;
+    background: rgba(150, 144, 142, 0.6);
+    border: 2px solid #9B9795;
+    box-sizing: border-box;
+}
+
+.btn {
+    padding: 60px 250px;
+}
+
+
+.btn-primary {
+        color: rgba(232, 229, 226, 1);
+        background-color: rgba(212, 135, 66, 1);
+        border-color: rgba(155, 151, 149, 1);
+}
+
+.btn-custom {
+    color: rgba(200, 198, 197, 1);
+    font-size: 17px;
+    background-color: rgba(108, 92, 78, 1);
+    border-color: rgba(155, 151, 149, 1);
+}
+.btn-custom:hover {
+    color: rgba(232, 229, 226, 1);
+    background-color: rgba(212, 135, 66, 1);
+    border-color: rgba(155, 151, 149, 1);
+}
+    .btn-custom:active, .btn-custom:focus {
+        outline: none !important;
+    }
+
+    .btn-custom::-moz-focus-inner {
+        border: 0 !important;
+    }
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+        color: rgba(232, 229, 226, 1);
+        background-color: rgba(212, 135, 66, 1);
+        border-color: rgba(155, 151, 149, 1);
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 0px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 0px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-image: url("../image/icons/back.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
