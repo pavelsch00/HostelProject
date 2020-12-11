@@ -4,7 +4,16 @@
 </head>
 
 @section Menu {
-    <a asp-controller="Home" class="btn btn-sm btn-custom" asp-action="Index">Back</a>
+    <div class="col-9 div-centr margin-bottom-user-edit-custom">
+        <form method="get" asp-controller="Role" asp-action="Index">
+            <button type="submit" class="btn btn-sm btn-custom btn-block">Edit roles</button>
+        </form>
+    </div>
+    <div class="col-9 div-centr margin-bottom-user-edit-custom">
+        <form method="get" asp-controller="Users" asp-action="Index">
+            <button type="submit" class="btn btn-sm btn-custom btn-block">Edit users</button>
+        </form>
+    </div>
 }
 
 <div class="container">

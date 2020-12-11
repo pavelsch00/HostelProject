@@ -14,5 +14,7 @@ namespace HostelProject.Models.Entities
         public int? ViolationsAndIncentivesId { get; set; }
 
         public int? StudentId { get; set; }
+
+        public DateTime Date { get; set; }
     }
 }

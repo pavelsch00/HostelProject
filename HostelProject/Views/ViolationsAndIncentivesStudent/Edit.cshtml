@@ -16,7 +16,14 @@
             <div class="margin-bottom-custom">
                 <h2>
                     <a class="h2-custom">
-                        ViolationsAndIncentivesStudent id @Model.Id change
+                        Edit ViolationsAndIncentivesStudent
+                    </a>
+                </h2>
+            </div>
+            <div class="margin-bottom-custom">
+                <h2>
+                    <a class="h2-custom">
+                        Id @Model.Id
                     </a>
                 </h2>
             </div>
@@ -52,6 +59,11 @@
                             }
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label asp-for="Date" class="control-label a-list-custom item-left">Date</label>
+                        <input type="date" asp-for="Date" class="form-control" />
+                    </div>
+
                     <div class="form-group">
                         <input type="submit" value="Save" class="btn btn-sm btn-custom item-left" />
                     </div>

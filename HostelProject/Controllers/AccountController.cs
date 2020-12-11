@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Threading.Tasks;
 using HostelProject.Models.Entities;
 using HostelProject.ViewModels;
@@ -20,36 +18,6 @@ namespace HostelProject.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
-        /*
-        [HttpGet]
-        public IActionResult Registration()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Registration(RegistrationViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                User user = new User { UserName = model.UserName, Email = model.Email };
-
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    await _signInManager.SignInAsync(user, false);
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    foreach (var error in result.Errors)
-                    {
-                        ModelState.AddModelError(string.Empty, error.Description);
-                    }
-                }
-            }
-            return View(model);
-        }*/
 
         [HttpGet]
         public IActionResult Login(string returnUrl = null)

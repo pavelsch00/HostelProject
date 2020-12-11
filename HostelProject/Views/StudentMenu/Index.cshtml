@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<HostelProject.ViewModels.ManagerViewModels.StudentListViewModel>
 
 @section Menu {
-    <a asp-controller="Manager" class="btn btn-sm btn-custom" asp-action="Index">Back</a>
+    <a asp-controller="ShowRating" class="btn btn-sm btn-custom" asp-action="Index">Show Students Rating</a>
 }
 
 <div class="container">
@@ -15,9 +15,6 @@
         </div>
         <form method="get" asp-controller="StudentMenu" asp-action="Create">
             <button type="submit" class="btn btn-sm btn-custom marginleft-custom">Create a new student</button>
-        </form>
-        <form method="get" asp-controller="ShowRating" asp-action="Index">
-            <button type="submit" class="btn btn-sm btn-custom marginleft-custom">Show Students Rating</button>
         </form>
         <hr align="center" width="100%" size="3" />
         <div class="col-2">
@@ -95,13 +92,14 @@
             <div class="col-2">
                 <a>@item.CheckOutDate.ToShortDateString()</a>
             </div>
-            <div class="col-2 a-list-custom">
+            <div class="col-3 a-list-custom">
                 <form method="get" asp-controller="StudentMenu" asp-action="Edit">
                     <a class="btn btn-sm btn-custom" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a class="btn btn-sm btn-custom" asp-controller="ViolationsAndIncentivesStudentList" asp-action="ShowList" asp-route-id="@item.Id">View violations</a>
                     <button type="submit" class="btn btn-sm btn-danger" asp-action="Evict" asp-route-id="@item.Id">Evict</button>
                 </form>
             </div>
             <hr align="center" width="100%" size="3" />
         }
     </div>
-</div>
+        </div>

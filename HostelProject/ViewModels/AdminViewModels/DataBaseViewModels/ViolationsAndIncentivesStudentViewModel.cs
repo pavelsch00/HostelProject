@@ -20,5 +20,9 @@ namespace HostelProject.ViewModels.AdminViewModels.DataBaseViewModels
         public List<int> ListViolationsAndIncentivesId { get; set; }
 
         public List<int> ListStudentId { get; set; }
+
+        public DateTime Date { get; set; }
+
+
     }
 }

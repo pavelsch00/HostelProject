@@ -1,3 +1,105 @@
-﻿<form method="get" asp-controller="ShowRating" asp-action="Index">
-    <button type="submit" class="btn btn-sm btn-custom marginleft-custom">Show Students Rating</button>
-</form>
+﻿@model IEnumerable<HostelProject.ViewModels.ManagerViewModels.StudentListViewModel>
+
+@section Menu {
+    <a asp-controller="ShowRating" class="btn btn-sm btn-custom" asp-action="Index">Show Students Rating</a>
+}
+
+<div class="container">
+    <div class="row a-list-custom text-center">
+        <div class="col-12">
+            <h2>
+                <a class="h2-custom">
+                    Student list
+                </a>
+            </h2>
+        </div>
+        <hr align="center" width="100%" size="3" />
+        <div class="col-2">
+            <a>FullName</a>
+        </div>
+        <div class="col-2">
+            <a>Faculty</a>
+        </div>
+        <div class="col-2">
+            <a>Specialty</a>
+        </div>
+        <div class="col-2">
+            <a>CourseNumber</a>
+        </div>
+        <div class="col-2">
+            <a>Gender</a>
+        </div>
+        <div class="col-2">
+            <a>DateOfBirth</a>
+        </div>
+        <div class="col-2">
+            <a>FloorNumber</a>
+        </div>
+        <div class="col-2">
+            <a>BlockNumber</a>
+        </div>
+        <div class="col-2">
+            <a>RoomNumber</a>
+        </div>
+        <div class="col-2">
+            <a>Position</a>
+        </div>
+        <div class="col-2">
+            <a>CheckInDate</a>
+        </div>
+        <div class="col-2">
+            <a>CheckOutDate</a>
+        </div>
+        <hr align="center" width="100%" size="3" />
+        @foreach (var item in Model)
+        {
+            <div class="col-2">
+                <a>@item.FullName</a>
+            </div>
+            <div class="col-2">
+                <a>@item.Faculty</a>
+            </div>
+            <div class="col-2">
+                <a>@item.Specialty</a>
+            </div>
+            <div class="col-2">
+                <a>@item.CourseNumber</a>
+            </div>
+            <div class="col-2">
+                <a>@item.Gender</a>
+            </div>
+            <div class="col-2">
+                <a>@item.DateOfBirth.ToShortDateString()</a>
+            </div>
+            <div class="col-2">
+                <a>@item.FloorNumber</a>
+            </div>
+            <div class="col-2">
+                <a>@item.BlockNumber</a>
+            </div>
+            <div class="col-2">
+                <a>@item.RoomNumber</a>
+            </div>
+            <div class="col-2">
+                <a>@item.Position</a>
+            </div>
+            <div class="col-2">
+                <a>@item.CheckInDate.ToShortDateString()</a>
+            </div>
+            <div class="col-2">
+                <a>@item.CheckOutDate.ToShortDateString()</a>
+            </div>
+            <div class="col-2 a-list-custom">
+                <form asp-controller="ViolationsAndIncentivesStudentList" asp-action="ShowList">
+                    <a class="btn btn-sm btn-custom" asp-controller="ViolationsAndIncentivesStudentList" asp-action="ShowList" asp-route-id="@item.Id">View violations</a>
+                </form>
+            </div>
+            <div class="col-2 a-list-custom">
+                <form asp-controller="ViolationsAndIncentivesStudentList" asp-action="ShowList">
+                    <a class="btn btn-sm btn-custom" asp-controller="ViolationsAndIncentivesStudentList" asp-action="Edit" asp-route-id="@item.Id">Change position</a>
+                </form>
+            </div>
+            <hr align="center" width="100%" size="3" />
+        }
+    </div>
+</div>

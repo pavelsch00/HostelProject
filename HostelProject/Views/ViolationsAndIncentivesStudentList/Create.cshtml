@@ -1,0 +1,45 @@
+﻿@model HostelProject.ViewModels.MentorViewModels.AddViolationViewModel
+
+@section Menu {
+    <a asp-controller="HostelMentor" class="btn btn-sm btn-custom" asp-action="Index">Back</a>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+
+        <div class="col-4 text-center">
+            <div class="margin-bottom-custom">
+                <h2>
+                    <a class="h2-custom">
+                        Add Violations or Incentives
+                    </a>
+                </h2>
+            </div>
+            <form asp-action="Create" asp-controller="ViolationsAndIncentivesStudentList">
+                <div class="form-group">
+                    <label asp-for="ViolationsAndIncentivesId" class="control-label item-left">ViolationsAndIncentives</label>
+                    <select type="number" asp-for="ViolationsAndIncentivesId" class="form-control">
+                        @if (@Model.ListViolationsAndIncentives != null)
+                        {
+                            @foreach (var item in Model.ListViolationsAndIncentives)
+                            {
+                                <option value="@item.Id">@item.FullName</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Date" class="control-label item-left">Date</label>
+                    <input type="date" asp-for="Date" class="form-control" value="2020-01-01"/>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-sm btn-custom item-left" />
+                </div>
+            </form>
+        </div>
+
+        <div class="col-4"></div>
+    </div>
+</div>

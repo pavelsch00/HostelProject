@@ -1,0 +1,63 @@
+﻿@model HostelProject.ViewModels.ViolationsAndIncentivesStudentListViewModel
+@section Menu {
+    <a asp-controller="HostelMentor" class="btn btn-sm btn-custom" asp-action="Index">Back</a>
+}
+
+<div class="container">
+    <div class="row a-list-custom text-center">
+        <div class="col-12">
+            <h2>
+                <a class="h2-custom">Violations And Incentives</a>
+            </h2>
+        </div>
+        <div class="col-12">
+            <h2>
+                <a class="h2-custom">@Model.FullName</a>
+            </h2>
+        </div>
+        <div class="col-1">
+            <form method="get" asp-controller="ViolationsAndIncentivesStudentList" asp-action="Create" asp-route-id="@Model.Id">
+                <button type="submit" class="btn btn-sm btn-custom" asp-action="Create" asp-route-id="@Model.Id">Add</button>
+            </form>
+        </div>
+        <div class="col-11">
+        </div>
+        <div class="col-4">
+            <a>Name</a>
+        </div>
+        <div class="col-4">
+            <a>TotalScore</a>
+        </div>
+        <div class="col-4">
+            <a>Date</a>
+        </div>
+        <hr align="center" width="100%" size="3" />
+
+        @foreach (var item in @Model.ViolationsAndIncentiveViewModelList)
+        {
+
+            <div class="col-4 a-list-custom">
+                <a class="a-list-custom">@item.Name</a>
+            </div>
+            <div class="col-4 a-list-custom">
+                <a class="a-list-custom">@item.Score</a>
+            </div>
+            <div class="col-4 a-list-custom">
+                <a class="a-list-custom">@item.Date.ToShortDateString()</a>
+            </div>
+            <hr align="center" width="100%" size="3" />
+        }
+        <div class="col-6">
+            <a>Total score</a>
+        </div>
+        <div class="col-6">
+            <a>@Model.TotalScore</a>
+        </div>
+        @*<div class="col-2 a-list-custom">
+            <form method="get" asp-controller="StudentMenu" asp-action="Edit">
+                <a class="btn btn-sm btn-custom" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <button type="submit" class="btn btn-sm btn-danger" asp-action="Evict" asp-route-id="@item.Id">Evict</button>
+            </form>
+        </div>*@
+    </div>
+</div>

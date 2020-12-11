@@ -24,14 +24,18 @@ namespace HostelProject.Controllers.ManagerControllers
 
         private readonly IRepository<Position> _positionRepository;
 
+        private readonly IRepository<ReasonForEviction> _reasonForEvictionRepository;
+
         public StudentMenuController(IRepository<Student> studentRepository, IRepository<Specialty> specialtyRepository,
-            IRepository<Faculty> facultyStudentRepository, IRepository<Room> roomRepository, IRepository<Position> positionRepository)
+            IRepository<Faculty> facultyStudentRepository, IRepository<Room> roomRepository, IRepository<Position> positionRepository,
+            IRepository<ReasonForEviction> reasonForEvictionRepository)
         {
             _studentRepository = studentRepository;
             _specialtyRepository = specialtyRepository;
             _facultyStudentRepository = facultyStudentRepository;
             _roomRepository = roomRepository;
             _positionRepository = positionRepository;
+            _reasonForEvictionRepository = reasonForEvictionRepository;
         }
 
         public async Task<IActionResult> IndexAsync() => View(await ShowListStudentAsync());
@@ -153,7 +157,11 @@ namespace HostelProject.Controllers.ManagerControllers
             var listSpecialty = _specialtyRepository.GetAll().ToList();
             var listPosition = _positionRepository.GetAll().ToList();
 
-            viewModel.Room = null;
+            viewModel.Room = (from item in listRoom
+                              where _studentRepository.GetAll().ToList()
+                              .Where(student => student.RoomId == item.Id)
+                              .Count() < 2
+                              select new RoomViewModel(item.Id, item.RoomNumber, item.FloorNumber, item.BlockNumber)).ToList();
             viewModel.Position = (from item in listPosition
                                   select new PositionViewModel(item.Id, item.Name)).ToList();
             viewModel.Specialty = (from item in listSpecialty
@@ -191,6 +199,7 @@ namespace HostelProject.Controllers.ManagerControllers
 
         public async Task<IActionResult> Evict(int id)
         {
+            var reasonForEvictionPosition = _reasonForEvictionRepository.GetAll().ToList();
             var student = await _studentRepository.GetById(id);
 
             if (student == null)
@@ -198,11 +207,37 @@ namespace HostelProject.Controllers.ManagerControllers
                 return NotFound();
             }
 
-            student.RoomId = null;
+            var viewModel = new EvictViewModel
+            {
+                Id = student.Id,
 
-            await _studentRepository.Edit(_studentRepository.GetById(id).Result.Id, student);
+                EvictList = (from item in reasonForEvictionPosition
+                             select new ReasonForEvictionViewModel(item.Id, item.Name)).ToList()
+            };
 
-            return RedirectToAction("Index");
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Evict(EvictViewModel viewModel)
+        {
+            var reasonForEvictionPosition = _reasonForEvictionRepository.GetAll().ToList();
+            var student = await _studentRepository.GetById(viewModel.Id);
+
+            viewModel.EvictList = (from item in reasonForEvictionPosition
+                                   select new ReasonForEvictionViewModel(item.Id, item.Name)).ToList();
+
+            if (ModelState.IsValid)
+            {
+
+                student.RoomId = null;
+                student.ReasonForEvictionId = viewModel.EvictId;
+                await _studentRepository.Edit(_studentRepository.GetById(viewModel.Id).Result.Id, student);
+
+                return RedirectToAction("Index");
+            }
+
+            return View(viewModel);
         }
 
         private async Task<bool> ValidateModel(StudentViewModel viewModel)

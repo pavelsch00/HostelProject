@@ -1,0 +1,44 @@
+﻿@model HostelProject.ViewModels.ManagerViewModels.EvictViewModel
+@{
+    ViewBag.Title = "Evict";
+}
+
+@section Menu {
+    <a asp-controller="StudentMenu" class="btn btn-sm btn-custom" asp-action="Index">Back</a>
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-4"></div>
+
+        <div class="col-4 text-center">
+            <div class="margin-bottom-custom">
+                <h2>
+                    <a class="h2-custom">
+                        Evict student
+                    </a>
+                </h2>
+            </div>
+            <form asp-action="Evict" asp-controller="StudentMenu">
+                <div class="form-group">
+                    <label asp-for="EvictId" class="control-label item-left">Reason For Eviction</label>
+                    <select type="number" asp-for="EvictId" class="form-control">
+                        @if (@Model.EvictList != null)
+                        {
+                            @foreach (var item in Model.EvictList)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Evict" class="btn btn-sm btn-custom item-left" />
+                </div>
+            </form>
+        </div>
+
+        <div class="col-4"></div>
+    </div>
+</div>

@@ -16,21 +16,20 @@ namespace HostelProject.Controllers
         {
             if (User.IsInRole("Admin"))
             {
-                return RedirectToAction("Index", "Admin");
+                return RedirectToAction("Index", "DataBase");
             }
-
 
             if (User.IsInRole("Manager"))
             {
-                return RedirectToAction("Index", "Manager");
+                return RedirectToAction("Index", "StudentMenu");
             }
 
             if (User.IsInRole("Mentor"))
             {
-                return RedirectToAction("Index", "Mentor");
+                return RedirectToAction("Index", "HostelMentor");
             }
 
-            return View();
+            return RedirectToAction("Index", "ShowRating");
         }
 
         public IActionResult Privacy()

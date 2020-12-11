@@ -33,7 +33,7 @@ namespace HostelProject.Controllers.AdminControllers.TableControllers
             foreach (var item in _violationsAndIncentivesStudentRepository.GetAll())
             {
                 viewModels.Add(new ViolationsAndIncentivesStudentViewModel { Id = item.Id, StudentId = item.StudentId.GetValueOrDefault(),
-                    ViolationsAndIncentivesId = item.ViolationsAndIncentivesId.GetValueOrDefault() });
+                    ViolationsAndIncentivesId = item.ViolationsAndIncentivesId.GetValueOrDefault(), Date =  item.Date});
             }
 
             return View(viewModels);
@@ -55,7 +55,8 @@ namespace HostelProject.Controllers.AdminControllers.TableControllers
             var viewModel = new ViolationsAndIncentivesStudentViewModel { Id = violationsAndIncentivesStudent.Id,
                 StudentId = violationsAndIncentivesStudent.StudentId.GetValueOrDefault(),
                 ViolationsAndIncentivesId = violationsAndIncentivesStudent.ViolationsAndIncentivesId.GetValueOrDefault(),
-                ListStudentId = listStudentId, ListViolationsAndIncentivesId = listViolationsAndIncentivesId
+                ListStudentId = listStudentId, ListViolationsAndIncentivesId = listViolationsAndIncentivesId,
+                Date = violationsAndIncentivesStudent.Date
             };
 
             return View(viewModel);
@@ -87,9 +88,9 @@ namespace HostelProject.Controllers.AdminControllers.TableControllers
                 }
 
                 var violationsAndIncentivesStudent = new ViolationsAndIncentivesStudent { Id = viewModel.Id, StudentId = viewModel.StudentId,
-                    ViolationsAndIncentivesId = viewModel.ViolationsAndIncentivesId };
+                    ViolationsAndIncentivesId = viewModel.ViolationsAndIncentivesId, Date = viewModel.Date };
 
-                await _violationsAndIncentivesStudentRepository.Edit(violationsAndIncentivesStudent);
+                await _violationsAndIncentivesStudentRepository.Edit(violationsAndIncentivesStudent.Id, violationsAndIncentivesStudent);
                 return RedirectToAction("Index");
             }
 
@@ -169,7 +170,7 @@ namespace HostelProject.Controllers.AdminControllers.TableControllers
                 }
 
                var violationsAndIncentivesStudent = new ViolationsAndIncentivesStudent { StudentId = viewModel.StudentId,
-                    ViolationsAndIncentivesId = viewModel.ViolationsAndIncentivesId };
+                    ViolationsAndIncentivesId = viewModel.ViolationsAndIncentivesId, Date = viewModel.Date };
 
                 await _violationsAndIncentivesStudentRepository.Add(violationsAndIncentivesStudent);
 

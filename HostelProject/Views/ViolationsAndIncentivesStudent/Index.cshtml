@@ -24,7 +24,10 @@
             <div class="col-2 a-list-custom">
                 <a class="a-list-custom">ViolationsAndIncentivesId</a>
             </div>
-            <div class="col-4 a-list-custom"></div>
+            <div class="col-2 a-list-custom">
+                <a class="a-list-custom">Date</a>
+            </div>
+            <div class="col-2 a-list-custom"></div>
             @foreach (var item in Model)
             {
                 <hr align="center" width="100%" size="3" />
@@ -36,6 +39,9 @@
                 </div>
                 <div class="col-2 a-list-custom">
                     <a class="a-list-custom">@item.ViolationsAndIncentivesId</a>
+                </div>
+                <div class="col-2 a-list-custom">
+                    <a class="a-list-custom">@item.Date.ToShortDateString()</a>
                 </div>
                 <div class="col-4 a-list-custom">
                     <form asp-action="Delete" asp-route-id="@item.Id" method="post">

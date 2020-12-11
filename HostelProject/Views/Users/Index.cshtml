@@ -4,7 +4,16 @@
 }
 
 @section Menu {
-    <a asp-controller="Home" class="btn btn-sm btn-custom" asp-action="Index">Back</a>
+    <div class="col-9 div-centr margin-bottom-user-edit-custom">
+        <form method="get" asp-controller="Role" asp-action="Index">
+            <button type="submit" class="btn btn-sm btn-custom btn-block">Edit roles</button>
+        </form>
+    </div>
+    <div class="col-9 div-centr margin-bottom-user-edit-custom">
+        <form method="get" asp-controller="DataBase" asp-action="Index">
+            <button type="submit" class="btn btn-sm btn-custom btn-block">Edit DataBase</button>
+        </form>
+    </div>
 }
 
 <div class="container a-list-custom ">
@@ -13,9 +22,9 @@
             <h4 class="h2-custom">User list</h4>
         </div>
 
-            <form method="get" asp-controller="Users" asp-action="Create">
-                <button type="submit" class="btn btn-sm btn-custom marginleft-custom">Create a new user</button>
-            </form>
+        <form method="get" asp-controller="Users" asp-action="Create">
+            <button type="submit" class="btn btn-sm btn-custom marginleft-custom">Create a new user</button>
+        </form>
 
         <hr align="center" width="100%" size="3" />
         @Html.ValidationSummary(true)
