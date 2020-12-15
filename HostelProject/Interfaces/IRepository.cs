@@ -13,8 +13,6 @@ namespace HostelProject.Interfaces
 
         IQueryable<T> GetAll();
 
-        IQueryable<T> GetBy(Expression<Func<T, bool>> predicate);
-
         Task<T> Add(T entity);
 
         Task Delete(T entity);

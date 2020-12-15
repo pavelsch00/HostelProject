@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using HostelProject.Interfaces;
 using HostelProject.Models.Entities;
 using HostelProject.ViewModels.ManagerViewModels;
+using HostelProject.ViewModels.MentorViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,11 +39,12 @@ namespace HostelProject.Controllers.HostelMentorControllers
             _mentorRepository = mentorRepository;
         }
 
-        public async Task<IActionResult> IndexAsync() => View(await ShowListStudentAsync());
+        public async Task<IActionResult> IndexAsync(string specialtyName, int courseNumber, string fullName) => View(await ShowListStudentAsync(specialtyName, courseNumber, fullName));
 
-        private async Task<List<StudentListViewModel>> ShowListStudentAsync()
+        private async Task<SelectedVewModel> ShowListStudentAsync(string specialtyName, int courseNumber, string fullName)
         {
-            var studentsList = new List<StudentListViewModel>();
+            var studentsList = new SelectedVewModel();
+            studentsList.StudentList = new List<StudentListViewModel>();
 
             var mentorFacultyId = _specialtyRepository.GetAll().Where(item => item.FacultyId == _mentorRepository
                 .GetAll().Where(ment => ment.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value).Select(u => u.FacultyId).FirstOrDefault())
@@ -50,14 +52,20 @@ namespace HostelProject.Controllers.HostelMentorControllers
             var specialtyIdList = _specialtyRepository.GetAll().Where(item => item.FacultyId == mentorFacultyId).Select(item => item.Id).ToList();
             var studentList = new List<Student>();
 
+
             foreach (var specialtyId in specialtyIdList)
             {
                 studentList.AddRange(_studentRepository.GetAll().Where(item => item.SpecialtyId == specialtyId).ToList());
             }
-            
+
+            if (!string.IsNullOrEmpty(fullName))
+            {
+                studentList = studentList.Where(item => item.FullName.Contains(fullName)).ToList();
+            }
+
             foreach (var student in studentList.Where(item => item.RoomId != null))
             {
-                studentsList.Add(new StudentListViewModel()
+                studentsList.StudentList.Add(new StudentListViewModel()
                 {
                     Id = student.Id,
                     FullName = student.FullName,
@@ -73,6 +81,16 @@ namespace HostelProject.Controllers.HostelMentorControllers
                     CheckOutDate = student.CheckOutDate,
                     Position = (await _positionRepository.GetById(student.PositionId)).Name
                 });
+            }
+
+            if (!string.IsNullOrEmpty(specialtyName))
+            {
+                studentsList.StudentList = studentsList.StudentList.Where(item => item.Specialty.Contains(specialtyName)).ToList();
+            }
+
+            if (courseNumber != 0)
+            {
+                studentsList.StudentList = studentsList.StudentList.Where(item => item.CourseNumber == courseNumber).ToList();
             }
 
             return studentsList;

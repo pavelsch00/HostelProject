@@ -56,13 +56,6 @@ namespace HostelProject.Models.Repositories
             return result;
         }
 
-        public IQueryable<T> GetBy(Expression<Func<T, bool>> predicate)
-        {
-            var result = _dbContext.Set<T>().Where(predicate);
-
-            return result;
-        }
-
         public async Task<T> GetById(object id)
         {
             var result = await _dbContext.Set<T>().FindAsync(id);

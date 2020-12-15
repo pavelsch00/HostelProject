@@ -38,7 +38,8 @@ namespace HostelProject.Controllers.ManagerControllers
             _reasonForEvictionRepository = reasonForEvictionRepository;
         }
 
-        public async Task<IActionResult> IndexAsync() => View(await ShowListStudentAsync());
+        public async Task<IActionResult> IndexAsync(string facultyName, string specialtyName, int courseNumber, string fullName) =>
+            View(await ShowListStudentAsync(facultyName, specialtyName, courseNumber, fullName));
 
         public IActionResult Create()
         {
@@ -258,15 +259,26 @@ namespace HostelProject.Controllers.ManagerControllers
             return true;
         }
 
-        private async Task<List<StudentListViewModel>> ShowListStudentAsync()
+        private async Task<SelectedStudentVewModel> ShowListStudentAsync(string facultyName, string specialtyName, int courseNumber, string fullName)
         {
-            var studentsList = new List<StudentListViewModel>();
+            var studentsList = new SelectedStudentVewModel();
+            studentsList.StudentList = new List<StudentListViewModel>();
+            List<Student> studentList;
 
-            foreach (var student in _studentRepository.GetAll().ToList())
+            if (!string.IsNullOrEmpty(fullName))
+            {
+                studentList = _studentRepository.GetAll().Where(item => item.FullName.Contains(fullName)).ToList();
+            }
+            else
+            {
+                studentList = _studentRepository.GetAll().ToList();
+            }
+
+            foreach (var student in studentList)
             {
                 if(student.RoomId != null)
                 {
-                    studentsList.Add(new StudentListViewModel()
+                    studentsList.StudentList.Add(new StudentListViewModel()
                     {
                         Id = student.Id,
                         FullName = student.FullName,
@@ -285,7 +297,7 @@ namespace HostelProject.Controllers.ManagerControllers
                 }
                 else
                 {
-                    studentsList.Add(new StudentListViewModel()
+                    studentsList.StudentList.Add(new StudentListViewModel()
                     {
                         Id = student.Id,
                         FullName = student.FullName,
@@ -302,6 +314,21 @@ namespace HostelProject.Controllers.ManagerControllers
                         Position = (await _positionRepository.GetById(student.PositionId)).Name
                     });
                 }
+            }
+
+            if (!string.IsNullOrEmpty(facultyName))
+            {
+                studentsList.StudentList = studentsList.StudentList.Where(item => item.Faculty.Contains(facultyName)).ToList();
+            }
+
+            if (!string.IsNullOrEmpty(specialtyName))
+            {
+                studentsList.StudentList = studentsList.StudentList.Where(item => item.Specialty.Contains(specialtyName)).ToList();
+            }
+
+            if (courseNumber != 0)
+            {
+                studentsList.StudentList = studentsList.StudentList.Where(item => item.CourseNumber == courseNumber).ToList();
             }
 
             return studentsList;

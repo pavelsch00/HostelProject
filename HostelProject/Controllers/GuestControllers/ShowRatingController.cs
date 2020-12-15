@@ -36,23 +36,32 @@ namespace HostelProject.Controllers.GuestControllers
             _facultyStudentRepository = facultyStudentRepository;
         }
 
-        public async Task<IActionResult> IndexAsync() => View(await GetViolationsAndIncentiveListAsync());
+        public async Task<IActionResult> IndexAsync(string facultyName, string specialtyName, int courseNumber, string fullName) => View(await GetViolationsAndIncentiveListAsync(facultyName, specialtyName, courseNumber, fullName));
 
-        private async Task<List<RatingViewModel>> GetViolationsAndIncentiveListAsync()
+        private async Task<SelectedListViewModel> GetViolationsAndIncentiveListAsync(string facultyName, string speciltyName, int courseNumber, string fullName)
         {
-            var studentRating = new List<RatingViewModel>();
-
+            var studentRating = new SelectedListViewModel();
+            studentRating.RatingList = new List<RatingViewModel>();
+            List<Student> studentList;
             int count = 1, totalScore = 0;
 
+            if (!string.IsNullOrEmpty(fullName))
+            {
+                studentList = _studentRepository.GetAll().Where(item => item.FullName.Contains(fullName)).ToList();
+            }
+            else
+            {
+                studentList = _studentRepository.GetAll().ToList();
+            }
 
-            foreach (var student in _studentRepository.GetAll().ToList())
+            foreach (var student in studentList)
             {
                 foreach (var item in _violationsAndIncentivesStudentRepository.GetAll().ToList().Where(item => item.StudentId == student.Id).Select(a => a.ViolationsAndIncentivesId))
                 {
                     totalScore += (await _violationsAndIncentiveRepository.GetById(item)).Score;
                 }
 
-                studentRating.Add(new RatingViewModel()
+                studentRating.RatingList.Add(new RatingViewModel()
                 {
                     FullName = student.FullName,
                     CourseNumber = student.CourseNumber,
@@ -64,9 +73,24 @@ namespace HostelProject.Controllers.GuestControllers
                 totalScore = 0;
             }
 
-            studentRating = studentRating.OrderByDescending(item => item.Score).ToList();
+            if (!string.IsNullOrEmpty(facultyName))
+            {
+                studentRating.RatingList = studentRating.RatingList.Where(item => item.Faculty.Contains(facultyName)).ToList();
+            }
 
-            foreach (var item in studentRating)
+            if (!string.IsNullOrEmpty(speciltyName))
+            {
+                studentRating.RatingList = studentRating.RatingList.Where(item => item.Specialty.Contains(speciltyName)).ToList();
+            }
+
+            if (courseNumber != 0)
+            {
+                studentRating.RatingList = studentRating.RatingList.Where(item => item.CourseNumber == courseNumber).ToList();
+            }
+
+            studentRating.RatingList = studentRating.RatingList.OrderByDescending(item => item.Score).ToList();
+
+            foreach (var item in studentRating.RatingList)
             {
                 item.Count = count;
                 count++;

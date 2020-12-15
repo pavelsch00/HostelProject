@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HostelProject.ViewModels.ManagerViewModels.StudentListViewModel>
+﻿@model HostelProject.ViewModels.ManagerViewModels.SelectedStudentVewModel
 
 @section Menu {
     <a asp-controller="ShowRating" class="btn btn-sm btn-custom" asp-action="Index">Show Students Rating</a>
@@ -13,8 +13,46 @@
                 </a>
             </h2>
         </div>
-        <form method="get" asp-controller="StudentMenu" asp-action="Create">
-            <button type="submit" class="btn btn-sm btn-custom marginleft-custom">Create a new student</button>
+
+        <div class="col-3">
+            <label class="control-label a-list-custom item-left">FullName</label>
+        </div>
+        <div class="col-3">
+            <label class="control-label a-list-custom item-left">Faculty Name</label>
+        </div>
+        <div class="col-3">
+            <label class="control-label a-list-custom item-left">Specialty Name</label>
+        </div>
+        <div class="col-3">
+            <label class="control-label a-list-custom item-left">Course Number</label>
+        </div>
+
+        <form asp-action="Index" asp-controller="StudentMenu">
+
+            <div class="form-inline form-group">
+                <div class="col-3  margin-bottom-user-custom">
+                    <input type="text" asp-for="@Model.FullName" class="form-control" />
+                </div>
+
+                <div class="col-3  margin-bottom-user-custom">
+                    <input type="text" asp-for="@Model.FacultyName" class="form-control" />
+                </div>
+
+                <div class="col-3  margin-bottom-user-custom">
+                    <input type="text" asp-for="@Model.SpecialtyName" class="form-control" />
+                </div>
+
+                <div class="col-3 margin-bottom-user-custom">
+                    <input type="number" asp-for="@Model.CourseNumber" class="form-control" />
+                </div>
+                <div class="col-3">
+                    <a type="submit" asp-controller="StudentMenu" asp-action="Create" class="btn btn-sm btn-custom marginleft-custom">Create a new student</a>
+                </div>
+                <div class="col-3">
+                    <input type="submit" value="Search" class="btn btn-sm btn-custom" />
+                </div>
+
+            </div>
         </form>
         <hr align="center" width="100%" size="3" />
         <div class="col-2">
@@ -54,7 +92,7 @@
             <a>CheckOutDate</a>
         </div>
         <hr align="center" width="100%" size="3" />
-        @foreach (var item in Model)
+        @foreach (var item in Model.StudentList)
         {
             <div class="col-2">
                 <a>@item.FullName</a>

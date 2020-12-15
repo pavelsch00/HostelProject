@@ -7,6 +7,8 @@ namespace HostelProject.ViewModels.GuestViewModels
 {
     public class RatingViewModel
     {
+        public string selectFullName { get; set; }
+
         public string FullName { get; set; }
 
         public string Faculty { get; set; }

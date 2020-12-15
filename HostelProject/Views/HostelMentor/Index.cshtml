@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HostelProject.ViewModels.ManagerViewModels.StudentListViewModel>
+﻿@model HostelProject.ViewModels.MentorViewModels.SelectedVewModel
 
 @section Menu {
     <a asp-controller="ShowRating" class="btn btn-sm btn-custom" asp-action="Index">Show Students Rating</a>
@@ -13,6 +13,40 @@
                 </a>
             </h2>
         </div>
+
+        <div class="col-3 item-right">
+            <a class="control-label a-list-custom ">FullName</a>
+        </div>
+        <div class="col-3 text-center">
+            <a class="control-label a-list-custom ">Specialty Name</a>
+        </div>
+        <div class="col-3 text-center">
+            <a class="control-label a-list-custom ">Course Number</a>
+        </div>
+        <div class="col-3">
+
+        </div>
+        <form asp-action="Index" asp-controller="HostelMentor">
+
+            <div class="form-inline form-group">
+                <div class="col-4  margin-bottom-user-custom">
+                    <input type="text" asp-for="@Model.FullName" class="form-control" />
+                </div>
+
+                <div class="col-4  margin-bottom-user-custom">
+                    <input type="text" asp-for="@Model.SpecialtyName" class="form-control" />
+                </div>
+
+                <div class="col-4 margin-bottom-user-custom">
+                    <input type="number" asp-for="@Model.CourseNumber" class="form-control" />
+                </div>
+                <div class="col-2">
+                    <input type="submit" value="Search" class="btn btn-sm btn-custom" />
+                </div>
+            </div>
+        </form>
+
+
         <hr align="center" width="100%" size="3" />
         <div class="col-2">
             <a>FullName</a>
@@ -51,7 +85,7 @@
             <a>CheckOutDate</a>
         </div>
         <hr align="center" width="100%" size="3" />
-        @foreach (var item in Model)
+        @foreach (var item in Model.StudentList)
         {
             <div class="col-2">
                 <a>@item.FullName</a>
